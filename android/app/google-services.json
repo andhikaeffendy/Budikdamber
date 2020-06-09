@@ -1,0 +1,96 @@
+{
+  "project_info": {
+    "project_number": "993991238664",
+    "firebase_url": "https://budikdamber.firebaseio.com",
+    "project_id": "budikdamber",
+    "storage_bucket": "budikdamber.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993991238664:android:572e57b4583281b6dfddbd",
+        "android_client_info": {
+          "package_name": "com.example.budikdamber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993991238664-1hn9h27vs80fb4ra6u461jvt1blu1f70.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budikdamber",
+            "certificate_hash": "4cb8a8bb1bf61d54f54f36a533eb8ee4be7e6f46"
+          }
+        },
+        {
+          "client_id": "993991238664-dk2m4904v27abhtpqli2uenhe5qgklfp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budikdamber",
+            "certificate_hash": "b5436759daed969f43dffc0a8d5f34c70d00c66a"
+          }
+        },
+        {
+          "client_id": "993991238664-t2u7eb07lp0ef3qa0daapnalvs4064cb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budikdamber",
+            "certificate_hash": "fa371371cf6dc435b73ac1fb4707457a58cfd52b"
+          }
+        },
+        {
+          "client_id": "993991238664-cgc0c50vlmnnp3gcl3p760qijsmlutv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budikdamber",
+            "certificate_hash": "520f65e73e2653bb347f6a0ebbd7475b3a0286f0"
+          }
+        },
+        {
+          "client_id": "993991238664-0ggp9f4u5tqfgcu5env69dpnpjeatbnf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budikdamber",
+            "certificate_hash": "a35597dd8c3a2289d0e59ffbd4b74a45795d0d83"
+          }
+        },
+        {
+          "client_id": "993991238664-hk7giait1gjmv164813n777ei76468at.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budikdamber",
+            "certificate_hash": "5bdccd83f4ee78abb6b86d886305ec7d1eb95b0c"
+          }
+        },
+        {
+          "client_id": "993991238664-cd76qv9gqhopol27h4ivo1qvv4c8bjeu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budikdamber",
+            "certificate_hash": "8f3e4a2b861188afeae2326de567dad09d65d5f1"
+          }
+        },
+        {
+          "client_id": "993991238664-5b5403pagpua82u4o9vtik64qk46stpk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgcilzI-qx--Q4l8tvxyXEoITB82IRSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993991238664-5b5403pagpua82u4o9vtik64qk46stpk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
