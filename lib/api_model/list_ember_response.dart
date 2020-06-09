@@ -15,12 +15,12 @@ class ListEmberResponse {
     this.message,
   });
 
-  List<Datum> data;
+  List<Ember> data;
   String status;
   String message;
 
   factory ListEmberResponse.fromJson(Map<String, dynamic> json) => ListEmberResponse(
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+    data: List<Ember>.from(json["data"].map((x) => Ember.fromJson(x))),
     status: json["status"],
     message: json["message"],
   );
@@ -32,8 +32,8 @@ class ListEmberResponse {
   };
 }
 
-class Datum {
-  Datum({
+class Ember {
+  Ember({
     this.id,
     this.name,
     this.embedDate,
@@ -53,7 +53,7 @@ class Datum {
   DateTime createdAt;
   DateTime updatedAt;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Ember.fromJson(Map<String, dynamic> json) => Ember(
     id: json["id"],
     name: json["name"],
     embedDate: DateTime.parse(json["embed_date"]),

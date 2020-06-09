@@ -1,10 +1,14 @@
-import 'package:budikdamber/emberku.dart';
+import 'dart:io';
+
+import 'package:budikdamber/api_model/list_ember_response.dart';
 import 'package:budikdamber/tambah_ember.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:imagebutton/imagebutton.dart';
 
 import 'detail_ember.dart';
+import 'global/global_variable.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -225,42 +229,53 @@ class _DashboardState extends State<Dashboard> {
                     Container(
                       width: MediaQuery.of(context).size.width * 0.70,
                       height: MediaQuery.of(context).size.height * 0.15,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: categories.length,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DetailEmber()),
-                                );
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(left: 8.0),
-                                padding: EdgeInsets.all(12.0),
-                                decoration: BoxDecoration(
-                                    color: Color(0XFFf1f3f6),
-                                    borderRadius: BorderRadius.circular(5.0)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Image.asset(
-                                      categories[index]['iconPath'],
-                                      height: 50.0,
-                                      width: 50.0,
+                      child: FutureBuilder(
+                        future: getListEmber(),
+                        builder: (context, snapshot){
+                          if(snapshot.data == null){
+                            return Container();
+                          }else{
+                            ListEmberResponse listEmberResponse = snapshot.data;
+                            List<Ember> listEmber = listEmberResponse.data;
+                            return ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: listEmber.length,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => DetailEmber()),
+                                      );
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(left: 8.0),
+                                      padding: EdgeInsets.all(12.0),
+                                      decoration: BoxDecoration(
+                                          color: Color(0XFFf1f3f6),
+                                          borderRadius: BorderRadius.circular(5.0)),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Image.asset(
+                                            categories[index]['iconPath'],
+                                            height: 50.0,
+                                            width: 50.0,
+                                          ),
+                                          SizedBox(
+                                            height: 8.0,
+                                          ),
+                                          Text(listEmber[index].name)
+                                        ],
+                                      ),
                                     ),
-                                    SizedBox(
-                                      height: 8.0,
-                                    ),
-                                    Text(categories[index]['name'])
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
+                                  );
+                                });
+                          }
+                        },
+                      ),
                     )
                   ],
                 ),
@@ -517,5 +532,20 @@ class _DashboardState extends State<Dashboard> {
         ),
       ),
     );
+  }
+
+  Future<ListEmberResponse> getListEmber()async{
+    var dio = Dio();
+    print("get list ember jalan");
+    String url = domain + "/api/v1/buckets";
+    dio.options.headers[HttpHeaders.authorizationHeader] = 'Bearer ' + globalUserDetails.idToken;
+    Response response = await dio.get(url);
+    print("response : "+response.toString());
+    String dummyResponse = '{"data": [{"id": 1,"name": "Ember Kotor","embed_date": "2020-05-29","fishes_age": 10,"created_by": 2,"updated_by": null,"created_at": "2020-05-29T14:35:13.000+07:00","updated_at": "2020-05-29T14:35:44.000+07:00"},{"id": 2,"name": "Ember Plastik","embed_date": "2020-05-29","fishes_age": 40,"created_by": 1,"updated_by": null,"created_at": "2020-05-29T14:41:43.000+07:00","updated_at": "2020-05-29T14:41:43.000+07:00"}],"status": "success","message": "Data Retrieved successfully"}';
+    //ListEmberResponse newResponse = listEmberResponseFromJson(response.toString());
+    ListEmberResponse newResponse = listEmberResponseFromJson(dummyResponse);
+    print("get list ember beres");
+
+    return newResponse;
   }
 }
