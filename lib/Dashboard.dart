@@ -246,7 +246,7 @@ class _DashboardState extends State<Dashboard> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => DetailEmber()),
+                                            builder: (context) => DetailEmber(bucketId: listEmber[index].id.toString())),
                                       );
                                     },
                                     child: Container(
