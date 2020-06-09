@@ -142,23 +142,23 @@ class _LoginFormState extends State<LoginForm> {
           googleIdToken.token
       );
       showCircular(context);
-      loginRequest(googleIdToken.token).then((task){
-        Navigator.of(context, rootNavigator: true).pop();
-        if(task.status == "fail"){
-          showDialog(
-              context: context,
-              builder: (BuildContext context){
-                return AlertDialog(
-                  title: Text("Sign Fail"),
-                  content: Text(task.message),
-                );
-              }
-          );
-        }else{
-          globalUserDetails = details;
-        }
-
-      });
+//      loginRequest(googleIdToken.token).then((task){
+//        Navigator.of(context, rootNavigator: true).pop();
+//        if(task.status == "fail"){
+//          showDialog(
+//              context: context,
+//              builder: (BuildContext context){
+//                return AlertDialog(
+//                  title: Text("Sign Fail"),
+//                  content: Text(task.message),
+//                );
+//              }
+//          );
+//        }else{
+//          globalUserDetails = details;
+//        }
+//
+//      });
 
 
 
