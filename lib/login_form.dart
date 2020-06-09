@@ -1,7 +1,12 @@
+import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:imagebutton/imagebutton.dart';
+import 'package:budikdamber/global/global_variable.dart';
+import 'api_model/login_response.dart';
 
 class LoginForm extends StatefulWidget {
   final AsyncCallback resumeCallBack;
@@ -89,6 +94,79 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+
+    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+    final GoogleSignIn _googlSignIn = new GoogleSignIn();
+
+
+    Future<FirebaseUser> _signIn(BuildContext context) async{
+      Scaffold.of(context).showSnackBar(new SnackBar(
+        content: new Text('Sign in'),
+      ));
+
+      final GoogleSignInAccount googleUser = await _googlSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth =await googleUser.authentication;
+
+
+      print("googleSignIn : " + _googlSignIn.toString());
+      print("FireBaseAuth : " + _firebaseAuth.toString());
+
+      globalGoogleSignIn = _googlSignIn;
+      globalFirebaseAuth = _firebaseAuth;
+
+      print("globGoogleSignIn = " + globalGoogleSignIn.toString());
+      print("globFirebase = " + globalFirebaseAuth.toString());
+
+      final AuthCredential credential = GoogleAuthProvider.getCredential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+
+
+      FirebaseUser userDetails = (await _firebaseAuth.signInWithCredential(credential)).user;
+      ProviderDetails providerInfo = new ProviderDetails(userDetails.providerId);
+
+      var googleIdToken = await userDetails.getIdToken();
+      print("userDetails.getIdToken = " + googleIdToken.token);
+
+      List<ProviderDetails> providerData = new List<ProviderDetails>();
+      providerData.add(providerInfo);
+
+      UserDetails details = new UserDetails(
+          userDetails.providerId,
+          userDetails.displayName,
+          userDetails.photoUrl,
+          userDetails.email,
+          providerData,
+          googleIdToken.token
+      );
+      showCircular(context);
+      loginRequest(googleIdToken.token).then((task){
+        Navigator.of(context, rootNavigator: true).pop();
+        if(task.status == "fail"){
+          showDialog(
+              context: context,
+              builder: (BuildContext context){
+                return AlertDialog(
+                  title: Text("Sign Fail"),
+                  content: Text(task.message),
+                );
+              }
+          );
+        }else{
+          globalUserDetails = details;
+        }
+
+      });
+
+
+
+      print("Google Sign In Success");
+      return userDetails;
+    }
+
+
     return Scaffold(
       body: Container(
         child: Row(
@@ -203,5 +281,27 @@ class _LoginFormState extends State<LoginForm> {
         ),
       ),
     );
+  }
+
+  showCircular(context){
+    showDialog(
+        context: context,
+        child: new Center(
+          child: new CircularProgressIndicator(),
+        )
+    );
+  }
+
+  Future<LoginResponse> loginRequest(String idToken) async{
+    var dio = Dio();
+    String url = domain + "/api/v1/login";
+    FormData formData = new FormData.fromMap({
+      "id_token": idToken,
+    });
+    Response response = await dio.post(url, data: formData);
+    print(response.data);
+
+    LoginResponse loginResponse = loginResponseFromJson(response.toString());
+    return loginResponse;
   }
 }
