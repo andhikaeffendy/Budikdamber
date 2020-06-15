@@ -3,12 +3,14 @@ import 'package:budikdamber/ceklis_peralatan.dart';
 import 'package:budikdamber/detail_ember.dart';
 import 'package:budikdamber/drawer_screen.dart';
 import 'package:budikdamber/login_form.dart';
+import 'package:budikdamber/navigation_bloc/navigation_bloc.dart';
 import 'package:budikdamber/peta_buyer.dart';
 import 'package:budikdamber/proses_setup.dart';
 import 'package:budikdamber/register.dart';
 import 'package:budikdamber/start_aplikasi.dart';
 import 'package:budikdamber/tambah_ember.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: StartAplikasi(),
+      home: MyHomePage(),
     );
   }
 }
@@ -49,16 +51,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<String> listitem = ['atu', 'dua', 'tiga', 'empat', 'lima'];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          DrawerScreen(),
-          Dashboard()
-        ],
-      ),// This trailing comma makes auto-formatting nicer for build methods.
+      body: BlocProvider<NavigationBloc>(
+        create: (context) => NavigationBloc(),
+        child: Stack(
+          children: <Widget>[
+            DrawerScreen(),
+            BlocBuilder<NavigationBloc, NavigationStates>(
+              builder: (context, navigationStates){
+                return navigationStates as Widget;
+              },
+            )
+          ],
+        ),
+      )
     );
   }
 }

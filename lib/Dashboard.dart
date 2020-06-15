@@ -1,26 +1,34 @@
 import 'dart:io';
 
 import 'package:budikdamber/api_model/list_ember_response.dart';
+import 'package:budikdamber/artikel.dart';
+import 'package:budikdamber/collapse_list_item.dart';
+import 'package:budikdamber/emberku.dart';
+import 'package:budikdamber/navigation_bloc/navigation_bloc.dart';
+import 'package:budikdamber/perawatan.dart';
 import 'package:budikdamber/tambah_ember.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imagebutton/imagebutton.dart';
 
 import 'detail_ember.dart';
 import 'global/global_variable.dart';
+import 'navigation_model.dart';
 
-class Dashboard extends StatefulWidget {
+class Dashboard extends StatefulWidget with NavigationStates{
   @override
   _DashboardState createState() => _DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _DashboardState extends State<Dashboard>{
 
   double xOffset = 0;
   double yOffset = 0;
   double scaleFactor = 1;
-  bool isDrawerOpen = false;
+  //bool isDrawerOpen = false;
+
 
   List<Map> categories = [
     {'name': 'ember 1', 'iconPath': 'assets/Ember1.png'},
@@ -34,19 +42,18 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      transform: Matrix4.translationValues(xOffset, yOffset, 0)
-        ..scale(scaleFactor)
-        ..rotateZ(isDrawerOpen ? -0.15 : 0),
+      transform: Matrix4.translationValues(isCollapse ? xOffset = 180 : xOffset, isCollapse ? yOffset=150: yOffset, 0)
+        ..scale(isCollapse ? scaleFactor = 0.7: scaleFactor)
+        ..rotateZ(isCollapse ? -0.15 : 0),
       duration: Duration(milliseconds: 250),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40.0), color: Colors.white),
       child: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height * 1,
-          width: MediaQuery.of(context).size.width * 1,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               SizedBox(
                 height: 30.0,
@@ -56,7 +63,7 @@ class _DashboardState extends State<Dashboard> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    isDrawerOpen
+                    isCollapse
                         ? IconButton(
                       icon: Icon(Icons.arrow_back_ios),
                       onPressed: () {
@@ -64,7 +71,7 @@ class _DashboardState extends State<Dashboard> {
                           xOffset = 0;
                           yOffset = 0;
                           scaleFactor = 1;
-                          isDrawerOpen = false;
+                          isCollapse = false;
                         });
                       },
                     )
@@ -77,7 +84,7 @@ class _DashboardState extends State<Dashboard> {
                           xOffset = 180;
                           yOffset = 150;
                           scaleFactor = 0.7;
-                          isDrawerOpen = true;
+                          isCollapse = true;
                         });
                       },
                       width: 25.0,
@@ -199,6 +206,11 @@ class _DashboardState extends State<Dashboard> {
                         pressedImage: Image.asset('assets/Scan.png'),
                         height: 25.0,
                         width: 25.0,
+                        onTap: (){
+                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.EmberkuClickEvent);
+                         currentSelected = 2;
+                         debugPrint(navigationItems[currentSelected].title);
+                        },
                       )
                     ],
                   )),
@@ -527,6 +539,9 @@ class _DashboardState extends State<Dashboard> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 20.0,
+              )
             ],
           ),
         ),
