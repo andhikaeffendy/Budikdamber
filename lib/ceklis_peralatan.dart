@@ -81,6 +81,7 @@ class _CeklisPeralatanState extends State<CeklisPeralatan> {
                 children: values.keys.map((e) => Container(
                           margin: EdgeInsets.only(bottom: 12.0),
                           child: CheckboxListTile(
+                            activeColor: Colors.green,
                             value: values[e],
                             title: Text(
                               e,

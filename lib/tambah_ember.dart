@@ -1,3 +1,4 @@
+import 'package:budikdamber/ceklis_peralatan.dart';
 import 'package:budikdamber/emberku.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
@@ -226,7 +227,7 @@ class _TambahEmberState extends State<TambahEmber> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Emberku()),
+                          builder: (context) => CeklisPeralatan()),
                     );
                   },
                   pressedImage: Image.asset('assets/Button_tambah.png'),

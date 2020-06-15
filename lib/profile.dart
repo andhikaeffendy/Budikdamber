@@ -68,7 +68,22 @@ class _ProfileState extends State<Profile> {
                 Image.asset('assets/Logo.png'),
               ],
             ),
-          )
+          ),SizedBox(
+            height: 40.0,
+          ),Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              margin: EdgeInsets.only(left: 20.0),
+              child: Text(
+                'Profile',
+                style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

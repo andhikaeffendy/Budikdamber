@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:budikdamber/api_model/detail_ember_response.dart';
+import 'package:budikdamber/tambah_ember.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,10 @@ class DetailEmber extends StatefulWidget {
 class _DetailEmberState extends State<DetailEmber> {
   String bucketId;
   _DetailEmberState(this.bucketId);
+
+  bool isPeralatan = false;
+  bool isProses = false;
+  bool isPerawatan = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,92 +57,116 @@ class _DetailEmberState extends State<DetailEmber> {
                   ],
                 ),
               ),
-              FutureBuilder(
-                future: getDetailEmber(bucketId),
-                builder: (context, snapshot){
-                  if(snapshot.data == null){
-                    return Container();
-                  }else{
-                    Data ember= snapshot.data.data;
-                    return Column(
-                      children: [
-                        Container(
-                            width: MediaQuery.of(context).size.width * 0.25,
-                            height: MediaQuery.of(context).size.height * 0.12,
-                            decoration: new BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: new DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: AssetImage('assets/Ember3.png')))),
-                        SizedBox(
-                          height: 8.0,
+              Column(
+                children: [
+                  Container(
+                      width: MediaQuery.of(context).size.width * 0.25,
+                      height: MediaQuery.of(context).size.height * 0.12,
+                      decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: new DecorationImage(
+                              fit: BoxFit.fill,
+                              image: AssetImage('assets/Ember3.png')))),
+                  SizedBox(
+                    height: 8.0,
+                  ),
+                  Text(
+                    'ember.name',
+                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 8.0,
+                  ),
+                  Container(
+                    height: MediaQuery.of(context).size.height*0.05,
+                    width: MediaQuery.of(context).size.width*0.25,
+                    child: FlatButton.icon(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TambahEmber()),
+                        );
+                      },
+                      icon: Icon(Icons.edit),
+                      label: Text('Edit'),
+                      color: Color(0XFFffac30),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.0,
+                  ),Container(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Keterangan 1',
+                        style: TextStyle(
+                            color: Colors.deepPurple,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.0
                         ),
-                        Text(
-                          ember.name,
-                          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  )
+                  ,SizedBox(
+                    height: 28.0,
+                  ),Container(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Keterangan 1',
+                        style: TextStyle(
+                            color: Colors.deepPurple,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.0
                         ),
-                        SizedBox(
-                          height: 8.0,
+                      ),
+                    ),
+                  )
+                  ,SizedBox(
+                    height: 28.0,
+                  ),Container(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Keterangan 1',
+                        style: TextStyle(
+                            color: Colors.deepPurple,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.0
                         ),
-                        Container(
-                          height: MediaQuery.of(context).size.height*0.05,
-                          width: MediaQuery.of(context).size.width*0.25,
-                          child: FlatButton.icon(
-                            onPressed: () {},
-                            icon: Icon(Icons.edit),
-                            label: Text('Edit'),
-                            color: Color(0XFFffac30),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.0,
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Keterangan 1',
-                              hintStyle: TextStyle(color: Colors.deepPurple)
-                          ),
-                        ),SizedBox(
-                          height: 12.0,
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Keterangan 2',
-                              hintStyle: TextStyle(color: Colors.deepPurple)
-                          ),
-                        ),SizedBox(
-                          height: 12.0,
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Keterangan 3',
-                              hintStyle: TextStyle(color: Colors.deepPurple)
-                          ),
-                        ),SizedBox(
-                          height: 12.0,
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Keterangan 4',
-                              hintStyle: TextStyle(color: Colors.deepPurple)
-                          ),
-                        ),SizedBox(
-                          height: 28.0,
-                        ),ImageButton(
-                          children: <Widget>[],
-                          unpressedImage: Image.asset('assets/Button_simpan.png'),
-                          pressedImage: Image.asset('assets/Button_simpan.png'),
-                          height: 45.0,
-                          width: 150.0,
-                        )
-                      ],
-                    );
-                  }
-                },
+                      ),
+                    ),
+                  )
+                  ,SizedBox(
+                    height: 40.0,
+                  ),InkWell(
+                    child: isPeralatan ? Image.asset('assets/Perawatan_hijau.png') : Image.asset('assets/Peralatan_merah.png'),
+                    onTap: (){
+                      setState(() {
+                        isPeralatan = true;
+                      });
+                    },
+                  ),SizedBox(
+                    height: 20.0,
+                  ),InkWell(
+                    child: isProses ? Image.asset('assets/Proses_hijau.png') : Image.asset('assets/Proses_merah.png'),
+                    onTap: (){
+                      setState(() {
+                        isProses = true;
+                      });
+                    },
+                  ),SizedBox(
+                    height: 20.0,
+                  ),InkWell(
+                    child: isPerawatan ? Image.asset('assets/Perawatan_hijau.png') : Image.asset('assets/Perawatan_merah.png'),
+                    onTap: (){
+                      setState(() {
+                        isPerawatan = true;
+                      });
+                    },
+                  ),
+                ],
               )
             ],
           ),

@@ -207,9 +207,9 @@ class _DashboardState extends State<Dashboard>{
                         height: 25.0,
                         width: 25.0,
                         onTap: (){
-                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.EmberkuClickEvent);
-                         currentSelected = 2;
-                         debugPrint(navigationItems[currentSelected].title);
+//                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.EmberkuClickEvent);
+//                         currentSelected = 2;
+//                         debugPrint(navigationItems[currentSelected].title);
                         },
                       )
                     ],
@@ -232,7 +232,7 @@ class _DashboardState extends State<Dashboard>{
                               builder: (context) => TambahEmber()),
                         );
                       },
-                      width: MediaQuery.of(context).size.width * 0.15,
+                      width: MediaQuery.of(context).size.width * 0.17,
                       height: MediaQuery.of(context).size.height * 0.08,
                     ),
                     SizedBox(
@@ -313,6 +313,9 @@ class _DashboardState extends State<Dashboard>{
                     ),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 20.0,
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 16.0),
