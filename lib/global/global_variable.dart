@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:budikdamber/api_model/list_peralatan_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -9,6 +10,8 @@ GoogleSignIn globalGoogleSignIn;
 FirebaseAuth globalFirebaseAuth;
 UserDetails globalUserDetails;
 AnimasiDong globalUserDipilih;
+
+ListPeralatanResponse globalListPeralatanResponse;
 
 bool isCollapse = false;
 //double xOffset = 0;

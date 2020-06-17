@@ -1,8 +1,14 @@
+import 'dart:io';
+
+import 'package:budikdamber/api_model/basic_response.dart';
 import 'package:budikdamber/ceklis_peralatan.dart';
 import 'package:budikdamber/emberku.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:imagebutton/imagebutton.dart';
+
+import 'global/global_variable.dart';
 
 class TambahEmber extends StatefulWidget {
   @override
@@ -21,6 +27,9 @@ class _TambahEmberState extends State<TambahEmber> {
   String _time = "Not set";
 
   DateTime selectedDate = DateTime.now();
+
+  TextEditingController nameTextEdit = new TextEditingController();
+  TextEditingController fieldTextEdit = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +90,7 @@ class _TambahEmberState extends State<TambahEmber> {
                 height: 12.0,
               ),
               TextField(
+                controller: nameTextEdit,
                 autofocus: false,
                 style: TextStyle(fontSize: 16.0, color: Colors.black),
                 decoration: InputDecoration(
@@ -203,6 +213,7 @@ class _TambahEmberState extends State<TambahEmber> {
                 height: 12.0,
               ),
               TextField(
+                controller: fieldTextEdit,
                 autofocus: false,
                 style: TextStyle(fontSize: 16.0, color: Colors.black),
                 decoration: InputDecoration(
@@ -224,6 +235,7 @@ class _TambahEmberState extends State<TambahEmber> {
                 child: ImageButton(
                   children: <Widget>[],
                   onTap: (){
+                    createBucketRequest();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -241,6 +253,22 @@ class _TambahEmberState extends State<TambahEmber> {
         ),
       ),
     );
+  }
+
+  Future<BasicResponse> createBucketRequest() async{
+    var dio = Dio();
+    String url = domain + "/api/v1/create_bucket";
+    dio.options.headers[HttpHeaders.authorizationHeader] = 'Bearer ' + globalUserDetails.idToken;
+    FormData formData = new FormData.fromMap({
+      "name": nameTextEdit.text,
+      "embed_date": selectedDate,
+      "fishes_age": fieldTextEdit.text,
+    });
+    Response response = await dio.post(url, data: formData);
+    print(response.data);
+
+    BasicResponse loginResponse = basicResponseFromJson(response.toString());
+    return loginResponse;
   }
 }
 

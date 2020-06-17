@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imagebutton/imagebutton.dart';
 
+import 'api_model/list_peralatan_response.dart';
 import 'detail_ember.dart';
 import 'global/global_variable.dart';
 import 'navigation_model.dart';
@@ -21,6 +22,7 @@ class Dashboard extends StatefulWidget with NavigationStates{
   @override
   _DashboardState createState() => _DashboardState();
 }
+
 
 class _DashboardState extends State<Dashboard>{
 
@@ -38,6 +40,12 @@ class _DashboardState extends State<Dashboard>{
     {'name': 'ember 2', 'iconPath': 'assets/Ember2.png'},
     {'name': 'ember 3', 'iconPath': 'assets/Ember3.png'},
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getListPeralatan();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -560,9 +568,28 @@ class _DashboardState extends State<Dashboard>{
     Response response = await dio.get(url);
     print("response : "+response.toString());
     String dummyResponse = '{"data": [{"id": 1,"name": "Ember Kotor","embed_date": "2020-05-29","fishes_age": 10,"created_by": 2,"updated_by": null,"created_at": "2020-05-29T14:35:13.000+07:00","updated_at": "2020-05-29T14:35:44.000+07:00"},{"id": 2,"name": "Ember Plastik","embed_date": "2020-05-29","fishes_age": 40,"created_by": 1,"updated_by": null,"created_at": "2020-05-29T14:41:43.000+07:00","updated_at": "2020-05-29T14:41:43.000+07:00"}],"status": "success","message": "Data Retrieved successfully"}';
-    //ListEmberResponse newResponse = listEmberResponseFromJson(response.toString());
-    ListEmberResponse newResponse = listEmberResponseFromJson(dummyResponse);
+    ListEmberResponse newResponse = listEmberResponseFromJson(response.toString());
+    //ListEmberResponse newResponse = listEmberResponseFromJson(dummyResponse);
     print("get list ember beres");
+
+    return newResponse;
+  }
+
+  getListPeralatan() async {
+    var dio = Dio();
+    print("get list peralatam jalan");
+    String url = domain + "/api/v1/tools";
+    dio.options.headers[HttpHeaders.authorizationHeader] =
+        'Bearer ' + globalUserDetails.idToken;
+    Response response = await dio.get(url);
+    print("response : " + response.toString());
+    String dummyResponse =
+        '{ "data": [ { "id": 1, "name": "Obeng", "description": "Obeng Serba Guna", "image": "http://localhost:3000/images/field/liga1_original_1.jpg?1590737531", "created_by": null, "updated_by": 2, "created_at": "2020-05-29T14:28:39.000+07:00", "updated_at": "2020-05-29T14:32:12.000+07:00" } ], "status": "success", "message": "Data Retrieved successfully" }';
+    //ListEmberResponse newResponse = listEmberResponseFromJson(response.toString());
+    ListPeralatanResponse newResponse = listPeralatanResponseFromJson(dummyResponse);
+    print("get list peralatan beres");
+
+    globalListPeralatanResponse = newResponse;
 
     return newResponse;
   }

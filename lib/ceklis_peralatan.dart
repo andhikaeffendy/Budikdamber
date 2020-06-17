@@ -1,6 +1,13 @@
+import 'dart:io';
+
+import 'package:budikdamber/api_model/list_peralatan_response.dart';
 import 'package:budikdamber/proses_setup.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:imagebutton/imagebutton.dart';
+
+import 'global/global_variable.dart';
+
 
 class CeklisPeralatan extends StatefulWidget {
   @override
@@ -8,16 +15,27 @@ class CeklisPeralatan extends StatefulWidget {
 }
 
 class _CeklisPeralatanState extends State<CeklisPeralatan> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    initAlat();
+    super.initState();
+  }
   
   var tmpArray = [];
 
-  Map<String, bool> values = {
-    'Apple': false,
-    'Banana': false,
-    'Cherry': false,
-    'Mango': false,
-    'Orange': false,
-  };
+  Map<String, bool> values = {};
+
+  initAlat(){
+    List<Datum> listAlat = globalListPeralatanResponse.data;
+    Map<String, bool> valueAlat = {};
+    listAlat.forEach((alat) {
+      values[alat.name] = false;
+    });
+
+    return valueAlat;
+  }
 
   getCheckboxItems(){
 
@@ -79,28 +97,28 @@ class _CeklisPeralatanState extends State<CeklisPeralatan> {
               ListView(
                 shrinkWrap: true,
                 children: values.keys.map((e) => Container(
-                          margin: EdgeInsets.only(bottom: 12.0),
-                          child: CheckboxListTile(
-                            activeColor: Colors.green,
-                            value: values[e],
-                            title: Text(
-                              e,
-                              style: TextStyle(
-                                  color: Colors.deepPurple,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            secondary: Image.asset(
-                              'assets/Ember3.png',
-                              height: 50.0,
-                              width: 50.0,
-                            ),
-                            onChanged: (bool value) {
-                              setState(() {
-                                values[e] = value;
-                              });
-                            },
-                          ),
-                        ))
+                  margin: EdgeInsets.only(bottom: 12.0),
+                  child: CheckboxListTile(
+                    activeColor: Colors.green,
+                    value: values[e],
+                    title: Text(
+                      e,
+                      style: TextStyle(
+                          color: Colors.deepPurple,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    secondary: Image.asset(
+                      'assets/Ember3.png',
+                      height: 50.0,
+                      width: 50.0,
+                    ),
+                    onChanged: (bool value) {
+                      setState(() {
+                        values[e] = value;
+                      });
+                    },
+                  ),
+                ))
                     .toList(),
               ),
               SizedBox(
@@ -125,4 +143,5 @@ class _CeklisPeralatanState extends State<CeklisPeralatan> {
       ),
     );
   }
+
 }
