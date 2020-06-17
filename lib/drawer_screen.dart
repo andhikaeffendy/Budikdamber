@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:budikdamber/Dashboard.dart';
+import 'package:budikdamber/api_model/basic_response.dart';
 import 'package:budikdamber/profile.dart';
 import 'package:budikdamber/collapse_list_item.dart';
 import 'package:budikdamber/emberku.dart';
 import 'package:budikdamber/navigation_bloc/navigation_bloc.dart';
 import 'package:budikdamber/navigation_model.dart';
+import 'package:budikdamber/start_aplikasi.dart';
 import 'package:budikdamber/tambah_ember.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imagebutton/imagebutton.dart';
@@ -131,6 +136,20 @@ class _DrawerScreenState extends State<DrawerScreen> {
               unpressedImage: Image.asset('assets/Logout.png'),
               height: 30.0,
               width: 100.0,
+              onTap: (){
+                logoutRequest().then((task){
+
+                  if(task.status=="success"){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => StartAplikasi()),
+                    );
+                  }else{
+                    print("Logout = " + task.status);
+                  }
+                });
+              },
             ),
           ),
           Container(
@@ -143,5 +162,17 @@ class _DrawerScreenState extends State<DrawerScreen> {
         ],
       ),
     );
+  }
+
+  Future<BasicResponse> logoutRequest() async{
+    var dio = Dio();
+    String url = domain + "/api/v1/logout";
+    dio.options.headers[HttpHeaders.authorizationHeader] =
+        'Bearer ' + globalUserDetails.idToken;
+    Response response = await dio.post(url);
+    print(response.data);
+
+    BasicResponse loginResponse = basicResponseFromJson(response.toString());
+    return loginResponse;
   }
 }
