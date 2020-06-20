@@ -15,6 +15,8 @@ AnimasiDong globalUserDipilih;
 ListPeralatanResponse globalListPeralatanResponse;
 ListSetupProcessResponse globalListSetupResponse;
 
+int selectedContentId;
+
 bool isCollapse = false;
 //double xOffset = 0;
 //double yOffset = 0;
