@@ -337,12 +337,20 @@ class _DashboardState extends State<Dashboard>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color(0XFFf1f3f6),
-                            borderRadius: BorderRadius.circular(8.0),
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Artikel()),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0XFFf1f3f6),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Image.asset('assets/Bahan-bahan.png'),
                           ),
-                          child: Image.asset('assets/Bahan-bahan.png'),
                         ),
                         SizedBox(
                           height: 8.0,
@@ -362,12 +370,20 @@ class _DashboardState extends State<Dashboard>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color(0XFFf1f3f6),
-                            borderRadius: BorderRadius.circular(8.0),
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Artikel()),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0XFFf1f3f6),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Image.asset('assets/Bahan-bahan.png'),
                           ),
-                          child: Image.asset('assets/Bahan-bahan.png'),
                         ),
                         SizedBox(
                           height: 8.0,
@@ -387,12 +403,20 @@ class _DashboardState extends State<Dashboard>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color(0XFFf1f3f6),
-                            borderRadius: BorderRadius.circular(8.0),
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Artikel()),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0XFFf1f3f6),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Image.asset('assets/Pembuatan_media.png'),
                           ),
-                          child: Image.asset('assets/Pembuatan_media.png'),
                         ),
                         SizedBox(
                           height: 8.0,
@@ -412,12 +436,20 @@ class _DashboardState extends State<Dashboard>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color(0XFFf1f3f6),
-                            borderRadius: BorderRadius.circular(8.0),
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Artikel()),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0XFFf1f3f6),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Image.asset('assets/AncamandanPeluang.png'),
                           ),
-                          child: Image.asset('assets/AncamandanPeluang.png'),
                         ),
                         SizedBox(
                           height: 8.0,
@@ -449,12 +481,20 @@ class _DashboardState extends State<Dashboard>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color(0XFFf1f3f6),
-                            borderRadius: BorderRadius.circular(8.0),
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Artikel()),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0XFFf1f3f6),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Image.asset('assets/Bahan-bahan.png'),
                           ),
-                          child: Image.asset('assets/Bahan-bahan.png'),
                         ),
                         SizedBox(
                           height: 8.0,
@@ -474,12 +514,20 @@ class _DashboardState extends State<Dashboard>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color(0XFFf1f3f6),
-                            borderRadius: BorderRadius.circular(8.0),
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Artikel()),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0XFFf1f3f6),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Image.asset('assets/Cara_ganti_air.png'),
                           ),
-                          child: Image.asset('assets/Cara_ganti_air.png'),
                         ),
                         SizedBox(
                           height: 8.0,
@@ -499,12 +547,20 @@ class _DashboardState extends State<Dashboard>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color(0XFFf1f3f6),
-                            borderRadius: BorderRadius.circular(8.0),
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Artikel()),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0XFFf1f3f6),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Image.asset('assets/Masa_panen.png'),
                           ),
-                          child: Image.asset('assets/Masa_panen.png'),
                         ),
                         SizedBox(
                           height: 8.0,
@@ -524,15 +580,23 @@ class _DashboardState extends State<Dashboard>{
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Color(0XFFf1f3f6),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Image.asset(
-                            'assets/Menu.png',
-                            height: 60.0,
-                            width: 60.0,
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Artikel()),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0XFFf1f3f6),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Image.asset(
+                              'assets/Menu.png',
+                              height: 60.0,
+                              width: 60.0,
+                            ),
                           ),
                         ),
                         SizedBox(
