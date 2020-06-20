@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:budikdamber/api_model/list_ember_response.dart';
+import 'package:budikdamber/api_model/list_setup_process_response.dart';
 import 'package:budikdamber/artikel.dart';
 import 'package:budikdamber/collapse_list_item.dart';
 import 'package:budikdamber/emberku.dart';
@@ -45,6 +46,7 @@ class _DashboardState extends State<Dashboard>{
   void initState() {
     // TODO: implement initState
     getListPeralatan();
+    getListSetupProcess();
   }
 
   @override
@@ -590,6 +592,25 @@ class _DashboardState extends State<Dashboard>{
     print("get list peralatan beres");
 
     globalListPeralatanResponse = newResponse;
+
+    return newResponse;
+  }
+
+  getListSetupProcess() async {
+    var dio = Dio();
+    print("get list Setup jalan");
+    String url = domain + "/api/v1/tools";
+    dio.options.headers[HttpHeaders.authorizationHeader] =
+        'Bearer ' + globalUserDetails.idToken;
+    Response response = await dio.get(url);
+    print("response : " + response.toString());
+    String dummyResponse =
+        '{ "data": [ { "id": 1, "name": "Mulai Dari Awal", "days_after": 25, "created_at": "2020-05-29T14:34:28.000+07:00", "updated_at": "2020-05-29T14:34:28.000+07:00" } ], "status": "success", "message": "Data Retrieved successfully" }';
+    //ListSetupProcessResponse newResponse = listSetupProcessResponseFromJson(response.toString());
+    ListSetupProcessResponse newResponse = listSetupProcessResponseFromJson(dummyResponse);
+    print("get list Setup beres");
+
+    globalListSetupResponse = newResponse;
 
     return newResponse;
   }

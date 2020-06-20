@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:imagebutton/imagebutton.dart';
+import 'package:budikdamber/global/global_variable.dart';
+
+import 'api_model/list_setup_process_response.dart';
 
 class ProsesSetup extends StatefulWidget {
   @override
@@ -10,13 +13,17 @@ class _ProsesSetupState extends State<ProsesSetup> {
 
   var tmpArray = [];
 
-  Map<String, bool> values = {
-    'Menyiapkan Ember': false,
-    'Menyiapkan bibit lele': false,
-    'Menyiapkan Air': false,
-    'Menyiapkan gelas plastik': false,
-    'Menyiapkan bibit kangkung': false,
-  };
+  Map<String, bool> values = {};
+
+  initSetupProcess(){
+    List<Datum> listSetup = globalListSetupResponse.data;
+    Map<String, bool> valueAlat = {};
+    listSetup.forEach((alat) {
+      values[alat.name] = false;
+    });
+
+    return valueAlat;
+  }
 
   getCheckboxItems(){
 
@@ -32,6 +39,13 @@ class _ProsesSetupState extends State<ProsesSetup> {
 
     // Clear array after use.
     tmpArray.clear();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    initSetupProcess();
+    super.initState();
   }
 
   @override
