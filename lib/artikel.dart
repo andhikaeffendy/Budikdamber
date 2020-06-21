@@ -55,10 +55,10 @@ class _ArtikelState extends State<Artikel> {
               FutureBuilder(
                 future: getContentResponse(),
                 builder: (context, snapshot){
-                  Data contentData = snapshot.data.data;
                   if(snapshot.data==null){
                     return Container();
                   }else{
+                    Data contentData = snapshot.data.data;
                     return Column(
                       children: [
                         Container(
@@ -110,8 +110,8 @@ class _ArtikelState extends State<Artikel> {
 
   Future<DetailContentResponse> getContentResponse()async{
     var dio = Dio();
-    print("get detail konten jalan");
-    String url = domain + "/api/v1/detail_content?content_id="+selectedContentId.toString();
+    print("get detail konten jalan, id = " + selectedArticleId.toString());
+    String url = domain + "/api/v1/detail_content?content_id="+selectedArticleId.toString();
     dio.options.headers[HttpHeaders.authorizationHeader] = 'Bearer ' + globalUserDetails.idToken;
     Response response = await dio.get(url);
     print("response : "+response.toString());

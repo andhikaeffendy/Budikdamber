@@ -341,7 +341,7 @@ class _DashboardState extends State<Dashboard>{
                       children: <Widget>[
                         InkWell(
                           onTap: (){
-                            selectedContentId = 1;
+                            selectedContentCategoryId = 1;
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => ListArtikel()),
@@ -375,6 +375,7 @@ class _DashboardState extends State<Dashboard>{
                       children: <Widget>[
                         InkWell(
                           onTap: (){
+                            selectedContentCategoryId = 2;
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => ListArtikel()),
@@ -408,6 +409,7 @@ class _DashboardState extends State<Dashboard>{
                       children: <Widget>[
                         InkWell(
                           onTap: (){
+                            selectedContentCategoryId = 3;
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => ListArtikel()),
@@ -441,6 +443,7 @@ class _DashboardState extends State<Dashboard>{
                       children: <Widget>[
                         InkWell(
                           onTap: (){
+                            selectedContentCategoryId = 4;
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => ListArtikel()),
@@ -486,6 +489,7 @@ class _DashboardState extends State<Dashboard>{
                       children: <Widget>[
                         InkWell(
                           onTap: (){
+                            selectedContentCategoryId = 5;
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => ListArtikel()),
@@ -519,6 +523,7 @@ class _DashboardState extends State<Dashboard>{
                       children: <Widget>[
                         InkWell(
                           onTap: (){
+                            selectedContentCategoryId = 6;
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => ListArtikel()),
@@ -552,6 +557,7 @@ class _DashboardState extends State<Dashboard>{
                       children: <Widget>[
                         InkWell(
                           onTap: (){
+                            selectedContentCategoryId = 7;
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => ListArtikel()),
@@ -585,6 +591,7 @@ class _DashboardState extends State<Dashboard>{
                       children: <Widget>[
                         InkWell(
                           onTap: (){
+                            selectedContentCategoryId = null;
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => ListArtikel()),
@@ -644,20 +651,7 @@ class _DashboardState extends State<Dashboard>{
     return newResponse;
   }
 
-  Future<ListContentResponse> getListResponse()async{
-    var dio = Dio();
-    print("get list ember jalan");
-    String url = domain + "/api/v1/contents";
-    dio.options.headers[HttpHeaders.authorizationHeader] = 'Bearer ' + globalUserDetails.idToken;
-    Response response = await dio.get(url);
-    print("response : "+response.toString());
-    String dummyResponse = '{ "data": [ { "id": 1, "title": "TUTORIAL BUDIKDAMBER PART 1 || CARA BUDIDAYA IKAN DALAM EMBER YANG MUDAH DAN MENGUNTUNGKAN", "body": "<p>Assalamualaikum Dalam kesempatan kali ini saya akan menjelaskan sistem budidaya baru dalam budidaya perikanan Saksikan video BUDIKDAMBER yang lain nya ya dari part awal sampai sekarang dari pada bingung dan mau mulainya gimana Buruan saksikan video BUDIKDAMBER nya ya Tonton sampai habis ya saudara agar menambah ilmu saudara sekalian Kontak bisnis : Wahyu.pujakela@gmail.com Jangan lupa subscribe ya agar tidak ketinggalan video saya yang terbaru dan tombol loncengnya, like jika suka dengan videonya, komentar jika ada pertanyaan dan masukan untuk video saya yang selanjutnya, share apabila dapat berguna dan bermanfaat bagi orang banyak Salam amis saudara perikanan dimana pun anda berada</p>", "image": "http://budikdamber.wiradipa.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--730d84763e4edb490db51a881c9b8b3a31430e7a/bahanbahan.jpg", "youtube_id": "zK0vKnKR0zw", "created_at": "2020-06-20T14:43:38.000+07:00", "updated_at": "2020-06-20T14:43:38.000+07:00" } ], "status": "success", "message": "Data Retrieved successfully" }';
-    //ListContentResponse newResponse = listContentResponseFromJson(response.toString());
-    ListContentResponse newResponse = listContentResponseFromJson(dummyResponse);
-    print("get list ember beres");
 
-    return newResponse;
-  }
 
   getListPeralatan() async {
     var dio = Dio();
