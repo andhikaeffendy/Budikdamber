@@ -6,6 +6,7 @@ import 'package:budikdamber/api_model/list_setup_process_response.dart';
 import 'package:budikdamber/artikel.dart';
 import 'package:budikdamber/collapse_list_item.dart';
 import 'package:budikdamber/emberku.dart';
+import 'package:budikdamber/list_artikel.dart';
 import 'package:budikdamber/navigation_bloc/navigation_bloc.dart';
 import 'package:budikdamber/perawatan.dart';
 import 'package:budikdamber/tambah_ember.dart';
@@ -343,7 +344,7 @@ class _DashboardState extends State<Dashboard>{
                             selectedContentId = 1;
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Artikel()),
+                              MaterialPageRoute(builder: (context) => ListArtikel()),
                             );
                           },
                           child: Container(
@@ -376,7 +377,7 @@ class _DashboardState extends State<Dashboard>{
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Artikel()),
+                              MaterialPageRoute(builder: (context) => ListArtikel()),
                             );
                           },
                           child: Container(
@@ -409,7 +410,7 @@ class _DashboardState extends State<Dashboard>{
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Artikel()),
+                              MaterialPageRoute(builder: (context) => ListArtikel()),
                             );
                           },
                           child: Container(
@@ -442,7 +443,7 @@ class _DashboardState extends State<Dashboard>{
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Artikel()),
+                              MaterialPageRoute(builder: (context) => ListArtikel()),
                             );
                           },
                           child: Container(
@@ -487,7 +488,7 @@ class _DashboardState extends State<Dashboard>{
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Artikel()),
+                              MaterialPageRoute(builder: (context) => ListArtikel()),
                             );
                           },
                           child: Container(
@@ -520,7 +521,7 @@ class _DashboardState extends State<Dashboard>{
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Artikel()),
+                              MaterialPageRoute(builder: (context) => ListArtikel()),
                             );
                           },
                           child: Container(
@@ -553,7 +554,7 @@ class _DashboardState extends State<Dashboard>{
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Artikel()),
+                              MaterialPageRoute(builder: (context) => ListArtikel()),
                             );
                           },
                           child: Container(
@@ -586,7 +587,7 @@ class _DashboardState extends State<Dashboard>{
                           onTap: (){
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Artikel()),
+                              MaterialPageRoute(builder: (context) => ListArtikel()),
                             );
                           },
                           child: Container(

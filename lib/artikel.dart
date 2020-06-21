@@ -22,105 +22,87 @@ class _ArtikelState extends State<Artikel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 30.0,
-            ),Container(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  isCollapse
-                      ? IconButton(
-                    icon: Icon(Icons.arrow_back_ios),
-                    onPressed: () {
-                      setState(() {
-                        xOffset = 0;
-                        yOffset = 0;
-                        scaleFactor = 1;
-                        isCollapse = false;
-                      });
-                    },
-                  )
-                      : ImageButton(
-                    children: <Widget>[],
-                    unpressedImage: Image.asset('assets/Menu.png'),
-                    pressedImage: Image.asset('assets/Menu.png'),
-                    onTap: (){
-                      setState(() {
-                        xOffset = 180;
-                        yOffset = 150;
-                        scaleFactor = 0.7;
-                        isCollapse = true;
-                      });
-                    },
-                    width: 25.0,
-                    height: 25.0,
-                  ),
-                  Text(
-                    'eBudikdamber',
-                    style: TextStyle(
-                        fontSize: 26.0, fontWeight: FontWeight.bold),
-                  ),
-                  Image.asset('assets/Logo.png'),
-                ],
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 30.0,
+              ),Container(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    ImageButton(
+                      children: <Widget>[],
+                      unpressedImage: Image.asset('assets/Menu.png'),
+                      pressedImage: Image.asset('assets/Menu.png'),
+                      width: 25.0,
+                      height: 25.0,
+                    ),
+                    Text(
+                      'eBudikdamber',
+                      style: TextStyle(
+                          fontSize: 26.0, fontWeight: FontWeight.bold),
+                    ),
+                    Image.asset('assets/Logo.png'),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            FutureBuilder(
-              future: getContentResponse(),
-              builder: (context, snapshot){
-                Data contentData = snapshot.data.data;
-                if(snapshot.data==null){
-                  return Container();
-                }else{
-                  return Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 16.0, right: 16.0),
-                        child: Text(
-                          contentData.title,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+              SizedBox(
+                height: 30.0,
+              ),
+              FutureBuilder(
+                future: getContentResponse(),
+                builder: (context, snapshot){
+                  Data contentData = snapshot.data.data;
+                  if(snapshot.data==null){
+                    return Container();
+                  }else{
+                    return Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 16.0, right: 16.0),
+                          child: Text(
+                            contentData.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                            ),
                           ),
-                        ),
-                      ),SizedBox(
-                        height: 30.0,
-                      ),Image.network(contentData.image),
-                      SizedBox(
-                        height: 12.0,
-                      ),Container(
-                        margin: EdgeInsets.only(left: 16.0, right: 16.0),
-                        child: Text(
-                          contentData.title,
-                          style: TextStyle(
-                              fontSize: 12.0,
-                              color: Colors.black38
+                        ),SizedBox(
+                          height: 30.0,
+                        ),Image.network(contentData.image),
+                        SizedBox(
+                          height: 12.0,
+                        ),Container(
+                          margin: EdgeInsets.only(left: 16.0, right: 16.0),
+                          child: Text(
+                            contentData.title,
+                            style: TextStyle(
+                                fontSize: 12.0,
+                                color: Colors.black38
+                            ),
                           ),
-                        ),
-                      ),SizedBox(
-                        height: 30.0,
-                      ),Container(
-                        margin: EdgeInsets.only(left: 16.0, right: 16.0),
-                        child: Text(
-                          contentData.body,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.0,
+                        ),SizedBox(
+                          height: 30.0,
+                        ),Container(
+                          margin: EdgeInsets.only(left: 16.0, right: 16.0),
+                          child: Text(
+                            contentData.body,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
-                  );
-                }
-              },
-            ),
-          ],
+                        )
+                      ],
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
