@@ -4,6 +4,7 @@ import 'package:budikdamber/api_model/list_peralatan_response.dart';
 import 'package:budikdamber/api_model/list_setup_process_response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:intl/intl.dart';
 
 String domain = "http://budikdamber.wiradipa.com";
 
@@ -16,6 +17,8 @@ ListPeralatanResponse globalListPeralatanResponse;
 ListSetupProcessResponse globalListSetupResponse;
 
 int selectedContentCategoryId;
+
+final formatDate = new DateFormat("dd-MMM-yyyy");
 
 int selectedArticleId;
 

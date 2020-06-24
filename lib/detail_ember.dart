@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:budikdamber/api_model/detail_ember_response.dart';
+import 'package:budikdamber/perawatan.dart';
 import 'package:budikdamber/tambah_ember.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -168,9 +169,11 @@ class _DetailEmberState extends State<DetailEmber> {
                         ),InkWell(
                           child: isPerawatan ? Image.asset('assets/Perawatan_hijau.png') : Image.asset('assets/Perawatan_merah.png'),
                           onTap: (){
-                            setState(() {
-                              isPerawatan = true;
-                            });
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Perawatan(bucketId: bucketId)
+                                ));
                           },
                         ),
                       ],
