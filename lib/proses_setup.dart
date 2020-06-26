@@ -3,6 +3,7 @@ import 'package:imagebutton/imagebutton.dart';
 import 'package:budikdamber/global/global_variable.dart';
 
 import 'api_model/list_setup_process_response.dart';
+import 'detail_ember.dart';
 
 class ProsesSetup extends StatefulWidget {
   @override
@@ -89,6 +90,7 @@ class _ProsesSetupState extends State<ProsesSetup> {
                 height: 24.0,
               ),ListView(
                   shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 children: values.keys.map((e) => Container(
                   margin: EdgeInsets.only(bottom: 12.0),
                   child: CheckboxListTile(
@@ -115,6 +117,13 @@ class _ProsesSetupState extends State<ProsesSetup> {
                 children: <Widget>[],
                 unpressedImage: Image.asset('assets/Button_simpan.png'),
                 pressedImage: Image.asset('assets/Button_simpan.png'),
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetailEmber()),
+                  );
+                },
                 height: 45.0,
                 width: 150.0,
               )

@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:budikdamber/api_model/detail_ember_response.dart';
+import 'package:budikdamber/ceklis_peralatan.dart';
 import 'package:budikdamber/perawatan.dart';
+import 'package:budikdamber/proses_setup.dart';
 import 'package:budikdamber/tambah_ember.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -151,18 +153,22 @@ class _DetailEmberState extends State<DetailEmber> {
                         ),InkWell(
                           child: isPeralatan ? Image.asset('assets/Perawatan_hijau.png') : Image.asset('assets/Peralatan_merah.png'),
                           onTap: (){
-                            setState(() {
-                              isPeralatan = true;
-                            });
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CeklisPeralatan()
+                                ));
                           },
                         ),SizedBox(
                           height: 20.0,
                         ),InkWell(
                           child: isProses ? Image.asset('assets/Proses_hijau.png') : Image.asset('assets/Proses_merah.png'),
                           onTap: (){
-                            setState(() {
-                              isProses = true;
-                            });
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProsesSetup()
+                                ));
                           },
                         ),SizedBox(
                           height: 20.0,

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "993991238664-kmt2bj6e6ch2av282ccpced60eue9bd2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budikdamber",
+            "certificate_hash": "fb95290b09e63632d9c17b3d55680586850a134c"
+          }
+        },
+        {
           "client_id": "993991238664-1hn9h27vs80fb4ra6u461jvt1blu1f70.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

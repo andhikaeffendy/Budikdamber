@@ -50,6 +50,7 @@ class _PerawatanState extends State<Perawatan> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Container(
           margin: EdgeInsets.all(16.0),
           child: Column(
@@ -100,6 +101,7 @@ class _PerawatanState extends State<Perawatan> {
                     });
                     return ListView(
                       shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       children: valuesDatum.keys.map((e) {
                         Datum data = e;
                             return Container(
